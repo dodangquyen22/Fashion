@@ -1,0 +1,27 @@
+{
+    "name": "fashion",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "dependencies": {
+        "express-handlebars": "^7.0.4",
+        "express": "^4.18.2"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.22"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon --inspect src/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dodangquyen22/Fashion.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/dodangquyen22/Fashion/issues"
+    },
+    "homepage": "https://github.com/dodangquyen22/Fashion#readme"
+}
