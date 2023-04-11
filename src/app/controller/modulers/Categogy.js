@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const productSchema = require('productSchema')
 const categorySchema = new mongoose.Schema({
     name: {
         type: String,
@@ -9,7 +8,11 @@ const categorySchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    products: [productSchema],
+    products: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+        required: true
+    },
     created_at: {
         type: Date,
         default: Date.now
