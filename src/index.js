@@ -54,13 +54,16 @@ db.connect();
 //     res.render('index');
 // });
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, 'resources/views/index.html'));
+    //res.sendFile(path.join(__dirname, 'resources/views/index.html'));
+    res.render('index');
 });
 app.get('/shop.html', function(req, res) {
-    res.sendFile(path.join(__dirname, 'resources/views/shop.html'));
+    //res.sendFile(path.join(__dirname, 'resources/views/shop.html'));
+    res.render('shop');
 });
 app.get('/shop-details.html', function(req, res) {
-    res.sendFile(path.join(__dirname, 'resources/views/shop-details.html'));
+    //res.sendFile(path.join(__dirname, 'resources/views/shop-details.html'));
+    res.render('shop-details');
 });
 app.listen(port, () => {
     console.log(`app listening on port ${port}`);
