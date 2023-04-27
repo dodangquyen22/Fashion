@@ -8,6 +8,11 @@ class sign_UpController {
     signIn(req, res) {
         res.render('user/signIn');
     }
+    loginSuccess(req, res, next) {
+        User.findOne({ _id: req.params.id }).lean()
+            .then(users => res.render('user/loginSuccess', { users }))
+            .catch((error) => next(error));
+    }
     async register(req, res, next) {
         try {
             const salt = await bcrypt.genSalt(10);
@@ -38,7 +43,7 @@ class sign_UpController {
                     user.password
                 );
                 if (validPassword) {
-                    res.status(200).json(user);
+                    res.redirect(`/user/${user.id}`);
                 } else {
                     return res.render('user/signIn', { error: 'Mật khẩu không chính xác' });
                 }
