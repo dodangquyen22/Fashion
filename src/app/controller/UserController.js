@@ -40,7 +40,7 @@ class sign_UpController {
                 if (validPassword) {
                     res.status(200).json(user);
                 } else {
-                    res.status(404).json("Lỗi mật khẩu");
+                    return res.render('user/signIn', { error: 'Mật khẩu không chính xác' });
                 }
             }
         } catch (error) {
