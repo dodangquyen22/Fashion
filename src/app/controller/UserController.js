@@ -1,4 +1,5 @@
 const User = require('./modulers/User');
+const Product = require('./modulers/Product');
 const bcrypt = require("bcrypt");
 
 class sign_UpController {
@@ -8,10 +9,16 @@ class sign_UpController {
     signIn(req, res) {
         res.render('user/signIn');
     }
+
+
     loginSuccess(req, res, next) {
-        User.findOne({ _id: req.params.id }).lean()
-            .then(users => res.render('user/loginSuccess', { users }))
-            .catch((error) => next(error));
+        Product.find().lean()
+            .then(products => {
+                User.findOne({ _id: req.params.id }).lean()
+                    .then(user => res.render('user/loginSuccess', { user, products }))
+                    .catch(error => next(error));
+            })
+            .catch(error => next(error));
     }
     async register(req, res, next) {
         try {
