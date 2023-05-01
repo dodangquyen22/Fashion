@@ -49,11 +49,11 @@
         </div>
         <div class="col-lg-6 col-md-5">
           <div class="header__top__right">
-            <div class="header__top__links">
+            {{! <div class="header__top__links">
               <a href="user/register">Register</a>
               <a href="user/login">Login</a>
               <!-- <a href="#">FAQs</a> -->
-            </div>
+            </div> }}
             <!-- <div class="header__top__hover">
                                 <span>Usd <i class="arrow_carrot-down"></i></span>
                                 <ul>
@@ -77,8 +77,13 @@
       <div class="col-lg-6 col-md-6">
         <nav class="header__menu mobile-menu">
           <ul>
-            <li class="active"><a href="./index.html">Trang chủ</a></li>
+            <li class="active"><a href="{{users.id}}">Trang chủ</a></li>
             <li><a href="./shop.html">Shop</a></li>
+            {{! <li class="cart">
+              <a href="">
+                <icon-icon name="basket">Cart</icon-icon><span>0</span>
+              </a>
+            </li> }}
             {{! <li><a href="#">Pages</a>
               <ul class="dropdown">
                 <li><a href="./about.html">About Us</a></li>
@@ -93,21 +98,42 @@
           </ul>
         </nav>
       </div>
+
       <div class="col-lg-3 col-md-3">
         <div class="header__nav__option">
-          {{! <a href="#" class="search-switch"><img
-              src="img/icon/search.png"
-              alt=""
-            /></a> }}
           <form id="form">
             <input type="search" id="query" name="q" placeholder="Search..." />
             <button>Search</button>
           </form>
-          {{! <a href="#"><img src="img/icon/heart.png" alt="" /></a>
-          <a href="#"><img src="img/icon/cart.png" alt="" /> <span>0</span></a>
-          <div class="price">$0.00</div> }}
+          <div class="cart">
+            <a href="#">
+              <img src="/img/icon/cart.png" alt="Cart" />
+              <span class="item-count">0</span>
+            </a>
+          </div>
+          <div class="dropdown">
+            <button
+              class="dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {{users.name}}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item" href="./about.html">Tài Khoản của tôi</a></li>
+              <li><a class="dropdown-item" href="./shop-details.html">Đơn mua</a></li>
+              <li><a class="dropdown-item" href="./">Đăng xuất</a></li>
+              {{! <li><a class="dropdown-item" href="./checkout.html">Check Out</a></li>
+              <li><a class="dropdown-item" href="./blog-details.html">Blog }}
+              {{! Details</a></li> }}
+            </ul>
+          </div>
         </div>
       </div>
+
     </div>
     <div class="canvas__open"><i class="fa fa-bars"></i></div>
   </div>
@@ -241,7 +267,7 @@
             </div>
             <div class="product__item__text">
               <h6>{{this.name}}</h6>
-              <a href="#" class="add-cart">+ Add To Cart</a>
+              <a href="#" class="add-cart">Thêm vào giỏ hàng</a>
               <!-- <div class="rating">
                                 <i class="fa fa-star-o"></i>
                                 <i class="fa fa-star-o"></i>

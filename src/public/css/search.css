@@ -1,8 +1,8 @@
 #form {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
-    margin-left: -350px;
+    margin-left: -310px;
     scale: 1.1;
 }
 
