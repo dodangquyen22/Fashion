@@ -50,7 +50,10 @@ class sign_UpController {
                     user.password
                 );
                 if (validPassword) {
-                    res.redirect(`/user/${user.id}`);
+                    res.cookie("uid", user.id);
+                    res.statusCode = 302;
+                    res.setHeader('Location', '/');
+                    res.end();
                 } else {
                     return res.render('user/signIn', { error: 'Mật khẩu không chính xác' });
                 }
@@ -58,6 +61,12 @@ class sign_UpController {
         } catch (error) {
             next(error);
         }
+    }
+    async logout(req, res, next) {
+        res.clearCookie("uid");
+        res.statusCode = 302;
+        res.setHeader('Location', '/');
+        res.end();
     }
 }
 
