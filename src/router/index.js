@@ -1,10 +1,10 @@
-const signUp = require('./user');
+const user = require('./user');
 const homepage = require('./homepage');
 const product = require('./product');
 
 function route(app) {
     app.use('/', homepage);
-    app.use('/user', signUp);
+    app.use('/user', user);
     app.use('/product', product);
 }
 
