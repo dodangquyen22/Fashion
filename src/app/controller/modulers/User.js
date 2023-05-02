@@ -14,6 +14,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    cart: {
+        type: Array
+    },
     createdAt: {
         type: Date,
         default: Date.now()

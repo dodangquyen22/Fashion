@@ -8,7 +8,6 @@ class homepageController {
             .then(products => res.render('index', { products }))
             .catch(error => next(error));
         }
-        console.log("UID: ", uid);
         let userFindResult = User.findOne({ _id: uid }).lean().then (users => {
                 Product.find().lean()
                 .then(products => {

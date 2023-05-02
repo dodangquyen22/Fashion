@@ -27,7 +27,7 @@
         alt=""
       /></a>
     <a href="#"><img src="/img/icon/heart.png" alt="" /></a>
-    <a href="#"><img src="/img/icon/cart.png" alt="" /> <span>0</span></a>
+    <a href="#"><img src="/img/icon/cart.png" alt="" /> <span>{{ users.cart.length }}</span></a>
     <div class="price">$0.00</div>
   </div>
   <div id="mobile-menu-wrap"></div>
@@ -106,9 +106,9 @@
             <button>Search</button>
           </form>
           <div class="cart">
-            <a href="#">
+            <a href="/cart">
               <img src="/img/icon/cart.png" alt="Cart" />
-              <span class="item-count">0</span>
+              <span class="item-count">{{ users.cart.length }}</span>
             </a>
           </div>
           <div class="dropdown">
@@ -267,7 +267,7 @@
             </div>
             <div class="product__item__text">
               <h6>{{this.name}}</h6>
-              <a href="#" class="add-cart">Thêm vào giỏ hàng</a>
+              <a href="/cart/add/{{this._id}}" class="add-cart">Thêm vào giỏ hàng</a>
               <!-- <div class="rating">
                                 <i class="fa fa-star-o"></i>
                                 <i class="fa fa-star-o"></i>
