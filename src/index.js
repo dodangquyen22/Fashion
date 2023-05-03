@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const { engine } = require('express-handlebars');
+const { create } = require('express-handlebars');
 const db = require('./config/db');
 const morgan = require('morgan');
 const route = require('./router');
@@ -14,10 +14,13 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+var hbs = create({
+    extname: '.hbs',
+    helpers: require('./utils/HBSHelper')
+});
+
 //Template engine
-app.engine('hbs', engine({
-    extname: '.hbs'
-}));
+app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources/views'));
 
