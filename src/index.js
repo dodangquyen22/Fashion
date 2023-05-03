@@ -7,12 +7,14 @@ const morgan = require('morgan');
 const route = require('./router');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
+const methodOverride = require('method-override');
 
 app.use(express.static(__dirname + '/public'));
 app.use(morgan('combined'));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(methodOverride('_method'));
 
 var hbs = create({
     extname: '.hbs',

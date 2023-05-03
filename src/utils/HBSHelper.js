@@ -12,5 +12,8 @@ module.exports = {
         price = products.reduce((partialSum, a) => partialSum + parseInt(a.price), 0)
         console.log(price);
         return price.toString();
+    },
+    increment: function(index) {
+      return index + 1;
     }
 }
