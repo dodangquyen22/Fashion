@@ -39,6 +39,13 @@ class ProductController {
         .then( () => res.redirect('/product/update'))
         .catch(next);
     }
+
+    // [DELETE] /produtc/:id
+    destroy(req, res, next) {
+        Product.deleteOne({ _id: req.params.id })
+        .then( () => res.redirect('back'))
+        .catch(next);
+    }
 }
 
 module.exports = new ProductController();
