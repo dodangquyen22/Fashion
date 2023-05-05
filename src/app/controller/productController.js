@@ -15,6 +15,16 @@ class ProductController {
         res.send('Saved new product');
     }
 
+    //[GET] /product/:id
+    view(req, res, next) {
+        Product.findOne({_id: req.params.id}).lean()
+        .then(product => {
+            console.log(product)
+            res.render('shop-details', { product });
+        })
+        .catch(next)
+    }
+
     //[GET] /product/update
     viewAll(req, res, next) {
         Product.find({})

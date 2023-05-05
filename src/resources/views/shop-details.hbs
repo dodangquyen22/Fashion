@@ -204,7 +204,7 @@
       <div class="row d-flex justify-content-center">
         <div class="col-lg-8">
           <div class="product__details__text">
-            <h4>Hooded thermal anorak</h4>
+            <h4>{{ product.name }}</h4>
             <div class="rating">
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
@@ -213,7 +213,7 @@
               <i class="fa fa-star-o"></i>
               <span> - 5 Reviews</span>
             </div>
-            <h3>$270.00 <span>70.00</span></h3>
+            <h3>{{product.price}}đ</h3>
             <p>Coat with quilted lining and an adjustable hood. Featuring long
               sleeves with adjustable cuff tabs, adjustable asymmetric hem with
               elastic side tabs and a front zip fastening with placket.</p>
@@ -258,12 +258,12 @@
                   <input type="text" value="1" />
                 </div>
               </div>
-              <a href="#" class="primary-btn">add to cart</a>
+              <a href="/cart/add/{{product._id}}" class="primary-btn">add to cart</a>
             </div>
-            <div class="product__details__btns__option">
+            {{!-- <div class="product__details__btns__option">
               <a href="#"><i class="fa fa-heart"></i> add to wishlist</a>
               <a href="#"><i class="fa fa-exchange"></i> Add To Compare</a>
-            </div>
+            </div> --}}
             <div class="product__details__last__option">
               <h5><span>Guaranteed Safe Checkout</span></h5>
               <img src="img/shop-details/details-payment.png" alt="" />
@@ -698,13 +698,13 @@
 <!-- Search End -->
 
 <!-- Js Plugins -->
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.nice-select.min.js"></script>
-<script src="js/jquery.nicescroll.min.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/jquery.countdown.min.js"></script>
-<script src="js/jquery.slicknav.js"></script>
-<script src="js/mixitup.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/main.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.nice-select.min.js"></script>
+<script src="/js/jquery.nicescroll.min.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/jquery.countdown.min.js"></script>
+<script src="/js/jquery.slicknav.js"></script>
+<script src="/js/mixitup.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/main.js"></script>
