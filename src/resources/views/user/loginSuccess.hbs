@@ -27,7 +27,8 @@
         alt=""
       /></a>
     <a href="#"><img src="/img/icon/heart.png" alt="" /></a>
-    <a href="#"><img src="/img/icon/cart.png" alt="" /> <span>{{ users.cart.length }}</span></a>
+    <a href="#"><img src="/img/icon/cart.png" alt="" />
+      <span>{{users.cart.length}}</span></a>
     <div class="price">$0.00</div>
   </div>
   <div id="mobile-menu-wrap"></div>
@@ -101,14 +102,14 @@
 
       <div class="col-lg-3 col-md-3">
         <div class="header__nav__option">
-          <form id="form">
+          <form action="/product" method="get" id="form">
             <input type="search" id="query" name="q" placeholder="Search..." />
             <button>Search</button>
           </form>
           <div class="cart">
             <a href="/cart">
               <img src="/img/icon/cart.png" alt="Cart" />
-              <span class="item-count">{{ users.cart.length }}</span>
+              <span class="item-count">{{users.cart.length}}</span>
             </a>
           </div>
           <div class="dropdown">
@@ -125,7 +126,8 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <li><a class="dropdown-item" href="./about.html">Tài Khoản của tôi</a></li>
               <li><a class="dropdown-item" href="/product/create">Thêm sản phẩm</a></li>
-              <li><a class="dropdown-item" href="./product/update">Quản lý sản phẩm</a></li>
+              <li><a class="dropdown-item" href="./product/update">Quản lý sản
+                  phẩm</a></li>
               <li><a class="dropdown-item" href="./shop-details.html">Đơn mua</a></li>
               <li><a class="dropdown-item" href="./user/logout">Đăng xuất</a></li>
               {{! <li><a class="dropdown-item" href="./checkout.html">Check Out</a></li>
@@ -269,7 +271,8 @@
             </div>
             <div class="product__item__text">
               <h6>{{this.name}}</h6>
-              <a href="/cart/add/{{this._id}}" class="add-cart">Thêm vào giỏ hàng</a>
+              <a href="/cart/add/{{this._id}}" class="add-cart">Thêm vào giỏ
+                hàng</a>
               <!-- <div class="rating">
                                 <i class="fa fa-star-o"></i>
                                 <i class="fa fa-star-o"></i>
