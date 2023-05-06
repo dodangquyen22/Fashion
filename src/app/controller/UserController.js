@@ -34,7 +34,7 @@ class sign_UpController {
             });
 
             await user.save();
-            res.json(user);
+            res.redirect('/');
         } catch (error) {
             next(error);
         }
