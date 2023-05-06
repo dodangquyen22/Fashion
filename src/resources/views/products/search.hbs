@@ -23,12 +23,11 @@
   </div>
   <div class="offcanvas__nav__option">
     <a href="#" class="search-switch"><img
-        src="/img/icon/search.png"
+        src="img/icon/search.png"
         alt=""
       /></a>
-    <a href="#"><img src="/img/icon/heart.png" alt="" /></a>
-    <a href="#"><img src="/img/icon/cart.png" alt="" />
-      <span>{{users.cart.length}}</span></a>
+    <a href="#"><img src="img/icon/heart.png" alt="" /></a>
+    <a href="#"><img src="img/icon/cart.png" alt="" /> <span>0</span></a>
     <div class="price">$0.00</div>
   </div>
   <div id="mobile-menu-wrap"></div>
@@ -50,11 +49,11 @@
         </div>
         <div class="col-lg-6 col-md-5">
           <div class="header__top__right">
-            {{! <div class="header__top__links">
+            <div class="header__top__links">
               <a href="user/register">Register</a>
               <a href="user/login">Login</a>
               <!-- <a href="#">FAQs</a> -->
-            </div> }}
+            </div>
             <!-- <div class="header__top__hover">
                                 <span>Usd <i class="arrow_carrot-down"></i></span>
                                 <ul>
@@ -72,19 +71,14 @@
     <div class="row">
       <div class="col-lg-3 col-md-3">
         <div class="header__logo">
-          <a href="./index.html"><img src="/img/logo.png" alt="" /></a>
+          <a href="./index.html"><img src="img/logo.png" alt="" /></a>
         </div>
       </div>
       <div class="col-lg-6 col-md-6">
         <nav class="header__menu mobile-menu">
           <ul>
-            <li class="active"><a href="{{users.id}}">Trang chủ</a></li>
+            <li class="active"><a href="./">Trang chủ</a></li>
             <li><a href="./shop.html">Shop</a></li>
-            {{! <li class="cart">
-              <a href="">
-                <icon-icon name="basket">Cart</icon-icon><span>0</span>
-              </a>
-            </li> }}
             {{! <li><a href="#">Pages</a>
               <ul class="dropdown">
                 <li><a href="./about.html">About Us</a></li>
@@ -99,45 +93,21 @@
           </ul>
         </nav>
       </div>
-
       <div class="col-lg-3 col-md-3">
         <div class="header__nav__option">
+          {{! <a href="#" class="search-switch"><img
+              src="img/icon/search.png"
+              alt=""
+            /></a> }}
           <form action="/product" method="get" id="form">
             <input type="search" id="query" name="q" placeholder="Search..." />
             <button>Search</button>
           </form>
-          <div class="cart">
-            <a href="/cart">
-              <img src="/img/icon/cart.png" alt="Cart" />
-              <span class="item-count">{{users.cart.length}}</span>
-            </a>
-          </div>
-          <div class="dropdown">
-            <button
-              class="dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              {{users.name}}
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <li><a class="dropdown-item" href="./about.html">Tài Khoản của tôi</a></li>
-              <li><a class="dropdown-item" href="/product/create">Thêm sản phẩm</a></li>
-              <li><a class="dropdown-item" href="./product/update">Quản lý sản
-                  phẩm</a></li>
-              <li><a class="dropdown-item" href="./shop-details.html">Đơn mua</a></li>
-              <li><a class="dropdown-item" href="./user/logout">Đăng xuất</a></li>
-              {{! <li><a class="dropdown-item" href="./checkout.html">Check Out</a></li>
-              <li><a class="dropdown-item" href="./blog-details.html">Blog }}
-              {{! Details</a></li> }}
-            </ul>
-          </div>
+          {{! <a href="#"><img src="img/icon/heart.png" alt="" /></a>
+          <a href="#"><img src="img/icon/cart.png" alt="" /> <span>0</span></a>
+          <div class="price">$0.00</div> }}
         </div>
       </div>
-
     </div>
     <div class="canvas__open"><i class="fa fa-bars"></i></div>
   </div>
@@ -169,7 +139,7 @@
         </div>
       </div>
     </div> --}}
-    <div class="hero__items set-bg" data-setbg="/img/hero/hero-2.jpg">
+    <div class="hero__items set-bg" data-setbg="img/hero/hero-2.jpg">
       <div class="container">
         <div class="row">
           <div class="col-xl-5 col-lg-7 col-md-8">
@@ -201,7 +171,7 @@
       <div class="col-lg-7 offset-lg-4">
         <div class="banner__item">
           <div class="banner__item__pic">
-            <img src="/img/banner/banner-1.jpg" alt="" />
+            <img src="img/banner/banner-1.jpg" alt="" />
           </div>
           <div class="banner__item__text">
             <h2>Quần áo</h2>
@@ -212,7 +182,7 @@
       <div class="col-lg-5">
         <div class="banner__item banner__item--middle">
           <div class="banner__item__pic">
-            <img src="/img/banner/banner-2.jpg" alt="" />
+            <img src="img/banner/banner-2.jpg" alt="" />
           </div>
           <div class="banner__item__text">
             <h2>Phụ kiện</h2>
@@ -223,7 +193,7 @@
       <div class="col-lg-7">
         <div class="banner__item banner__item--last">
           <div class="banner__item__pic">
-            <img src="/img/banner/banner-3.jpg" alt="" />
+            <img src="img/banner/banner-3.jpg" alt="" />
           </div>
           <div class="banner__item__text">
             <h2>Giày</h2>
@@ -248,57 +218,48 @@
         </ul>
       </div>
     </div>
-    <div class="row product__filter">
-      {{#each products}}
-        <div
-          class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals"
-        >
-          <div class="product__item">
-            <div class="product__item__pic set-bg" data-setbg="{{this.image}}">
-              <span class="label">New</span>
-              <ul class="product__hover">
-                <li>
-                  <a href="#"><img src="/img/icon/heart.png" alt="" /></a>
-                </li>
-                <li>
-                  <a href="#"><img src="/img/icon/compare.png" alt="" />
-                    <span>Compare</span></a>
-                </li>
-                <li>
-                  <a href="product/{{this._id}}"><img src="img/icon/search.png" alt="" />
-                    <span>View</span></a>
-                </li>
-              </ul>
-            </div>
-            <div class="product__item__text">
-              <h6>{{this.name}}</h6>
-              <a href="/cart/add/{{this._id}}" class="add-cart">Thêm vào giỏ
-                hàng</a>
-              <!-- <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div> -->
-              <h5>{{this.price}}</h5>
-              <div class="product__color__select">
-                <label for="pc-1">
-                  <input type="radio" id="pc-1" />
-                </label>
-                <label class="active black" for="pc-2">
-                  <input type="radio" id="pc-2" />
-                </label>
-                <label class="grey" for="pc-3">
-                  <input type="radio" id="pc-3" />
-                </label>
-              </div>
+    {{#if products}}
+  <div class="row product__filter">
+    {{#each products}}
+      <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+        <div class="product__item">
+          <div class="product__item__pic set-bg" data-setbg="{{this.image}}">
+            <span class="label">New</span>
+            <ul class="product__hover">
+              <li><a href="#"><img src="img/icon/heart.png" alt="" /></a></li>
+              <li>
+                <a href="#">
+                  <img src="img/icon/compare.png" alt="" />
+                  <span>Compare</span>
+                </a>
+              </li>
+              <li><a href="#"><img src="img/icon/search.png" alt="" /></a></li>
+            </ul>
+          </div>
+          <div class="product__item__text">
+            <h6>{{this.name}}</h6>
+            <a href="#" class="add-cart">+ Add To Cart</a>
+            <!-- <div class="rating">
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+            </div> -->
+            <h5>{{this.price}}</h5>
+            <div class="product__color__select">
+              <label for="pc-1"><input type="radio" id="pc-1" /></label>
+              <label class="active black" for="pc-2"><input type="radio" id="pc-2" /></label>
+              <label class="grey" for="pc-3"><input type="radio" id="pc-3" /></label>
             </div>
           </div>
         </div>
-      {{/each}}
-    </div>
+      </div>
+    {{/each}}
   </div>
+{{else}}
+  <p>Không tìm thấy sản phẩm</p>
+{{/if}}
 </section>
 <!-- Product Section End -->
 

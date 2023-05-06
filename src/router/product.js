@@ -4,6 +4,7 @@ const authenticationMiddleware = require('../middleware/authentication')
 const authorizationMiddleware = require('../middleware/authorization')
 const ProductController = require('../app/controller/productController');
 
+router.get('/', ProductController.search)
 router.get('/create',authenticationMiddleware, authorizationMiddleware,  ProductController.create);
 router.post('/store',authenticationMiddleware, authorizationMiddleware, ProductController.store);
 router.get('/update',authenticationMiddleware, authorizationMiddleware, ProductController.viewAll);

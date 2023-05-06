@@ -1,4 +1,4 @@
-<!-- Page Preloder -->
+{{! <!-- Page Preloder -->
 <div id="preloder">
   <div class="loader"></div>
 </div>
@@ -105,7 +105,7 @@
     </div>
     <div class="canvas__open"><i class="fa fa-bars"></i></div>
   </div>
-</header>
+</header> }}
 <!-- Header Section End -->
 
 <!-- Breadcrumb Section Begin -->
@@ -143,29 +143,31 @@
               </tr>
             </thead>
             <tbody>
-              {{#if products.length }}
-              {{#each products}}
-              <tr>
-                <td class="product__cart__item">
-                  <div class="product__cart__item__pic">
-                    <img src="{{this.image}}" alt="" />
-                  </div>
-                  <div class="product__cart__item__text">
-                    <h6>{{this.name}}</h6>
-                    <h5>{{this.price}} đ</h5>
-                  </div>
-                </td>
-                <td class="quantity__item">
-                  <div class="quantity">
-                    <div class="pro-qty-2">
-                      <input type="text" value="1" />
-                    </div>
-                  </div>
-                </td>
-                <td class="cart__price">{{this.price}} đ</td>
-                <td class="cart__close"><a href="/cart/remove/{{this._id}}"><i class="fa fa-close"></i></a></td>
-              </tr>
-              {{/each}}
+              {{#if products.length}}
+                {{#each products}}
+                  <tr>
+                    <td class="product__cart__item">
+                      <div class="product__cart__item__pic">
+                        <img src="{{this.image}}" alt="" />
+                      </div>
+                      <div class="product__cart__item__text">
+                        <h6>{{this.name}}</h6>
+                        <h5>{{this.price}} đ</h5>
+                      </div>
+                    </td>
+                    <td class="quantity__item">
+                      <div class="quantity">
+                        <div class="pro-qty-2">
+                          <input type="text" value="1" />
+                        </div>
+                      </div>
+                    </td>
+                    <td class="cart__price">{{this.price}} đ</td>
+                    <td class="cart__close"><a
+                        href="/cart/remove/{{this._id}}"
+                      ><i class="fa fa-close"></i></a></td>
+                  </tr>
+                {{/each}}
               {{else}}
                 <tr>
                   <td>
@@ -190,13 +192,13 @@
         </div>
       </div>
       <div class="col-lg-4">
-        <div class="cart__discount">
+        {{! <div class="cart__discount">
           <h6>Discount codes</h6>
           <form action="#">
             <input type="text" placeholder="Coupon code" />
             <button type="submit">Apply</button>
           </form>
-        </div>
+        </div> }}
         <div class="cart__total">
           <h6>Cart total</h6>
           <ul>
@@ -212,7 +214,7 @@
 <!-- Shopping Cart Section End -->
 
 <!-- Footer Section Begin -->
-<footer class="footer">
+{{!-- <footer class="footer">
   <div class="container">
     <div class="row">
       <div class="col-lg-3 col-md-6 col-sm-6">
@@ -277,7 +279,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 </footer>
 <!-- Footer Section End -->
 

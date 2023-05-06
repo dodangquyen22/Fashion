@@ -32,22 +32,33 @@ class ProductController {
                 products: multipleMongooseToObject(products)
             }))
             .catch(next);
-        
+
     }
 
     // [GET] /product/:id/edit
     edit(req, res, next) {
-        Product.findById(req.params.id)
-        .then(product => res.render('products/edit', {
-            product: mongooseToObject(product)
-        }))
-        .catch(next);
-    }
-    // [PUT] /product/:id
+            Product.findById(req.params.id)
+                .then(product => res.render('products/edit', {
+                    product: mongooseToObject(product)
+                }))
+                .catch(next);
+        }
+        // [PUT] /product/:id
     update(req, res, next) {
-        Product.updateOne({_id: req.params.id}, req.body)
-        .then( () => res.redirect('/product/update'))
-        .catch(next);
+        Product.updateOne({ _id: req.params.id }, req.body)
+            .then(() => res.redirect('/product/update'))
+            .catch(next);
+    }
+
+    async search(req, res, next) {
+        try {
+            const { q } = req.query;
+            const query = q ? { name: { $regex: q, $options: 'i' } } : {};
+            const products = await Product.find(query).lean();
+            res.render('products/search', { query, products });
+        } catch (error) {
+            next(error);
+        }
     }
 
     // [DELETE] /produtc/:id
