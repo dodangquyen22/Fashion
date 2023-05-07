@@ -43,7 +43,7 @@ class sign_UpController {
         try {
             const user = await User.findOne({ email: req.body.email });
             if (!user) {
-                res.status(404).json("Lỗi");
+                return res.render('user/signIn', { error: 'Tài khoản không tồn tại' });
             } else {
                 const validPassword = await bcrypt.compare(
                     req.body.password,
