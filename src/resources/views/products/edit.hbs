@@ -1,7 +1,7 @@
 <div class="mt-4">
     <h3>Cập nhật sản phẩm</h3>
 
-    <form class="mt-4" method="POST" action="/product/{{product._id}}?_method=PUT">
+    <form class="mt-4" method="POST" action="/admin/products/{{product._id}}?_method=PUT">
         <div class="form-group">
             <label for="name">Tên sản phẩm</label>
             <input type="text" class="form-control" value="{{product.name}}" id="name" name="name">

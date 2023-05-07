@@ -10,7 +10,6 @@ class sign_UpController {
         res.render('user/signIn');
     }
 
-
     loginSuccess(req, res, next) {
         Product.find().lean()
             .then(products => {

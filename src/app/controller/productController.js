@@ -46,7 +46,7 @@ class ProductController {
         // [PUT] /product/:id
     update(req, res, next) {
         Product.updateOne({ _id: req.params.id }, req.body)
-            .then(() => res.redirect('/product/update'))
+            .then(() => res.redirect('/admin/products'))
             .catch(next);
     }
 

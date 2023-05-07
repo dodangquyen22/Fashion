@@ -17,7 +17,7 @@
                 <td>{{this.price}}</td>
                 <td>{{this.category}}</td>
                 <td>
-                    <a href="/product/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+                    <a href="/admin/products/{{this._id}}/edit" class="btn btn-link">Sửa</a>
                     <a href="" class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-product-modal">Xóa</a>
                 </td>
             </tr>
@@ -59,7 +59,7 @@
 
             var btnDeleteProduct = document.getElementById('btn-delete-product');
             btnDeleteProduct.onclick = function() {
-                deleteForm.action = '/product/' + productId + '?_method=DELETE';
+                deleteForm.action = 'products/delete/' + productId + '?_method=DELETE';
                 deleteForm.submit();
             }
   
