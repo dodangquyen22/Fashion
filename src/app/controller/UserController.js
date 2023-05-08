@@ -14,7 +14,7 @@ class sign_UpController {
         Product.find().lean()
             .then(products => {
                 User.findOne({ _id: req.params.id }).lean()
-                    .then(users => res.render('user/loginSuccess', { users, products }))
+                    .then(users => res.redirect("/"))
                     .catch(error => next(error));
             })
             .catch(error => next(error));

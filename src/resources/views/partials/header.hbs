@@ -1,4 +1,6 @@
 <header class="header">
+  {{#if user}}
+  {{else}}
   <div class="header__top">
     <div class="container">
       <div class="row">
@@ -10,8 +12,8 @@
         <div class="col-lg-6 col-md-5">
           <div class="header__top__right">
             <div class="header__top__links">
-              <a href="user/register">Register</a>
-              <a href="user/login">Login</a>
+              <a href="/user/register">Register</a>
+              <a href="/user/login">Login</a>
               <!-- <a href="#">FAQs</a> -->
             </div>
             <!-- <div class="header__top__hover">
@@ -27,18 +29,19 @@
       </div>
     </div>
   </div>
+  {{/if}}
   <div class="container">
     <div class="row">
       <div class="col-lg-3 col-md-3">
         <div class="header__logo">
-          <a href="./index.html"><img src="img/logo.png" alt="" /></a>
+          <a href="/"><img src="/img/logo.png" alt="" /></a>
         </div>
       </div>
       <div class="col-lg-6 col-md-6">
         <nav class="header__menu mobile-menu">
           <ul>
-            <li class="active"><a href="./">Trang chủ</a></li>
-            <li><a href="./shop.html">Shop</a></li>
+            <li class="active"><a href="/">Trang chủ</a></li>
+            <li><a href="">Shop</a></li>
             {{! <li><a href="#">Pages</a>
               <ul class="dropdown">
                 <li><a href="./about.html">About Us</a></li>
@@ -66,6 +69,34 @@
           {{! <a href="#"><img src="img/icon/heart.png" alt="" /></a>
           <a href="#"><img src="img/icon/cart.png" alt="" /> <span>0</span></a>
           <div class="price">$0.00</div> }}
+          {{#if user}}
+          <div class="cart">
+            <a href="/cart">
+              <img src="/img/icon/cart.png" alt="Cart" />
+              <span class="item-count">{{user.cart.length}}</span>
+            </a>
+          </div>
+          <div class="dropdown">
+            <button
+              class="dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {{user.name}}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item" href="./about.html">Tài Khoản của tôi</a></li>
+              <li><a class="dropdown-item" href="./shop-details.html">Đơn mua</a></li>
+              <li><a class="dropdown-item" href="/user/logout">Đăng xuất</a></li>
+              {{! <li><a class="dropdown-item" href="./checkout.html">Check Out</a></li>
+              <li><a class="dropdown-item" href="./blog-details.html">Blog }}
+              {{! Details</a></li> }}
+            </ul>
+          </div>
+          {{/if}}
         </div>
       </div>
     </div>

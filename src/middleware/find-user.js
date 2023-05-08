@@ -3,7 +3,7 @@ const User = require('../app/controller/modulers/User')
 const auth = async(req, res, next) => {
     let uid = req.cookies.uid;
     if (!uid) {
-        res.redirect("/user/login");
+        next();
         return;
     }
     try {
@@ -14,7 +14,7 @@ const auth = async(req, res, next) => {
         req.user = user
         next()
     } catch (error) {
-        res.redirect("/user/login");
+        next();
         return;
     }
 

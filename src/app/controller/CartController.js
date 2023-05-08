@@ -9,8 +9,10 @@ class CartController {
             }
         }).lean()
             .then(products => {
-                let user = req.user;
-                res.render('shopping-cart', { user, products })
+                res.render('shopping-cart', { 
+                    user: req.user, 
+                    products: products 
+                })
             })
             .catch(error => next(error));
 
