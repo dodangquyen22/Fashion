@@ -20,7 +20,10 @@ class ProductController {
         Product.findOne({_id: req.params.id}).lean()
         .then(product => {
             console.log(product)
-            res.render('shop-details', { product });
+            res.render('shop-details', { 
+                user: req.user, 
+                product: product 
+            });
         })
         .catch(next)
     }

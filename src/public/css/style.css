@@ -3892,3 +3892,13 @@ ol {
         height: 250px;
     }
 }
+.product__cart__item {
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+.product__cart__item__pic {
+    height: 90px;
+    width: 90px;
+    position: relative;
+    background-position: center center;
+  }
