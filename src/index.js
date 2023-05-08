@@ -28,7 +28,6 @@ app.set('views', path.join(__dirname, 'resources/views'));
 
 const port = 3000;
 db.connect();
-
 app.listen(port, () => {
     console.log(`app listening on port ${port}`);
 });

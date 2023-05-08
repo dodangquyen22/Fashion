@@ -12,7 +12,7 @@ class ProductController {
         //res.json(req.body);
         const product = new Product(req.body);
         product.save();
-        res.send('Saved new product');
+        res.redirect('/admin/products');
     }
 
     //[GET] /product/:id

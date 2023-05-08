@@ -15,5 +15,9 @@ module.exports = {
     },
     increment: function(index) {
       return index + 1;
+    },
+    formatPrice: function(price) {
+      return price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+      
     }
 }
