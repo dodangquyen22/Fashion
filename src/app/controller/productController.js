@@ -30,7 +30,17 @@ class ProductController {
 
     //[GET] /product/update
     viewAll(req, res, next) {
-        Product.find({})
+
+        let productQuery = Product.find({});
+
+
+        if (req.query.hasOwnProperty('_sort')) {
+            productQuery = productQuery.sort({
+                [req.query.column]: req.query.type
+            });
+        }
+
+        productQuery
             .then(products => res.render('products/productUpdate', {
                 products: multipleMongooseToObject(products)
             }))

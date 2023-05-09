@@ -1,13 +1,25 @@
-<div class="mt-4">
+<div class="mt-4 px-5">
     <h3>Danh sách tất cả sản phẩm</h3>
     <table class="table mt-4">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Tên sản phẩm</th>
-                <th scope="col">Hình ảnh</th>
-                <th scope="col">Giá sản phẩm</th> 
-                <th scope="col" colspan="2">Phân loại</th>
+                <th scope="col">
+                  Tên sản phẩm
+                  {{{sortable 'name' _sort}}}
+                </th>
+                <th scope="col">
+                  Hình ảnh
+                  {{{sortable 'image' _sort}}}
+                </th>
+                <th scope="col">
+                  Giá sản phẩm
+                  {{{sortable 'price' _sort}}}
+                </th> 
+                <th scope="col" colspan="2">
+                  Phân loại
+                  {{{sortable 'category' _sort}}}
+                </th>
             </tr>
         </thead>
         <tbody>
