@@ -38,7 +38,7 @@
 </div>
 <!-- Offcanvas Menu End -->
 
-    {{> header }}
+    {{> header-shop }}
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-option">
@@ -80,12 +80,12 @@
                                         <div class="card-body">
                                             <div class="shop__sidebar__categories">
                                                 <ul class="nice-scroll">
-                                                    <li><a href="/shop/filter?category=Áo khoác">Áo khoác</a></li>
-                                                    <li><a href="/shop/filter?category=Áo polo">Áo polo</a></li>
-                                                    <li><a href="/shop/filter?category=Áo thun">Áo thun</a></li>
-                                                    <li><a href="/shop/filter?category=Quần vải">Quần vải</a></li>
-                                                    <li><a href="/shop/filter?category=Quần jean">Quần jean</a></li>
-                                                    <li><a href="/shop/filter?category=Phụ kiện">Phụ kiện</a></li>
+                                                    <li><a href="/shop/filter-and-sort?category=Áo khoác">Áo khoác</a></li>
+                                                    <li><a href="/shop/filter-and-sort?category=Áo polo">Áo polo</a></li>
+                                                    <li><a href="/shop/filter-and-sort?category=Áo thun">Áo thun</a></li>
+                                                    <li><a href="/shop/filter-and-sort?category=Quần vải">Quần vải</a></li>
+                                                    <li><a href="/shop/filter-and-sort?category=Quần jean">Quần jean</a></li>
+                                                    <li><a href="/shop/filter-and-sort?category=Phụ kiện">Phụ kiện</a></li>
                                             </ul>
                                             </div>
                                         </div>
@@ -233,7 +233,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="shop__product__option__right">
                                     <p>Sort by Price:</p>
-                                    <form action="/shop/sort" method="GET">
+                                    <form action="/shop/filter-and-sort" method="GET">
                                     <select name="sort" onchange="this.form.submit()">
                                         <option value="">...</option>
                                         <option value="asc" >Từ thấp tới cao</option>

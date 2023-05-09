@@ -17,15 +17,15 @@ class ProductController {
 
     //[GET] /product/:id
     view(req, res, next) {
-        Product.findOne({_id: req.params.id}).lean()
-        .then(product => {
-            console.log(product)
-            res.render('shop-details', { 
-                user: req.user, 
-                product: product 
-            });
-        })
-        .catch(next)
+        Product.findOne({ _id: req.params.id }).lean()
+            .then(product => {
+                console.log(product)
+                res.render('shop-details', {
+                    user: req.user,
+                    product: product
+                });
+            })
+            .catch(next)
     }
 
     //[GET] /product/update
@@ -58,7 +58,7 @@ class ProductController {
             const { q } = req.query;
             const query = q ? { name: { $regex: q, $options: 'i' } } : {};
             const products = await Product.find(query).lean();
-            res.render('products/search', { query, products });
+            res.render('products/search', { user: req.user, query, products });
         } catch (error) {
             next(error);
         }
@@ -67,8 +67,8 @@ class ProductController {
     // [DELETE] /produtc/:id
     destroy(req, res, next) {
         Product.deleteOne({ _id: req.params.id })
-        .then( () => res.redirect('back'))
-        .catch(next);
+            .then(() => res.redirect('back'))
+            .catch(next);
     }
 }
 
