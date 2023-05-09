@@ -2,7 +2,8 @@ const user_finder = require("../middleware/find-user");
 const user = require('./user');
 const homepage = require('./homepage');
 const product = require('./product');
-const cart = require('./cart')
+const cart = require('./cart');
+const checkout = require('./checkout');
 const admin = require('./admin');
 
 function route(app) {
@@ -13,6 +14,7 @@ function route(app) {
     app.use('/user', user);
     app.use('/product', product);
     app.use('/cart', cart);
+    app.use('/checkout', checkout);
     app.use('/admin', admin);
 }
 
