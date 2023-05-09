@@ -9,7 +9,7 @@ module.exports = {
       return "BAR!";
     },
     total_price: function(products) {
-        price = products.reduce((partialSum, a) => partialSum + parseInt(a.price), 0)
+        price = products.reduce((partialSum, a) => partialSum + parseInt(a.price) * a.quantity, 0)
         console.log(price);
         return price.toString();
     },
@@ -19,5 +19,15 @@ module.exports = {
     formatPrice: function(price) {
       return price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
       
+    },
+    multiple: function(a, b) {
+      return a * b;
+    },
+    productCount: function(cart) {
+      let sum = 0;
+      cart.forEach(e => {
+        sum += e.quantity;
+      });
+      return sum;
     }
 }
