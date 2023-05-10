@@ -1,4 +1,5 @@
 const Product = require("./modulers/Product");
+const User = require("./modulers/User");
 const Order = require("./modulers/Order");
 const request = require('request');
 const moment = require('moment');
@@ -62,30 +63,80 @@ class CheckoutController {
             description: "INT2208 - Thanh toan hoa don",
             embed_data: JSON.stringify({
                 order_id: new_order._id.toString(),
-                redirecturl: "http://localhost:3000/checkout/callback"
+                redirecturl: "http://localhost:3000/checkout/redirect"
             }),
             bank_code: "",
             mac: null,
-            callback_url: "http://localhost:3000/checkout/callback"
+            // callback_url: "http://localhost:3000/checkout/callback" // Internet reachable callback URL
         }
         const hash = crypto.createHmac('sha256', 'sdngKKJmqEMzvh5QQcdD2A9XBSKUNaYn')
-                    
-                   // updating data
-                   .update(form.app_id +'|'+ form.app_trans_id +'|'+ form.app_user +'|'+ form.amount +"|"+ form.app_time +'|'+ form.embed_data +"|"+ form.item)
- 
-                   // Encoding to be used
-                   .digest('hex');
+
+            // updating data
+            .update(form.app_id + '|' + form.app_trans_id + '|' + form.app_user + '|' + form.amount + "|" + form.app_time + '|' + form.embed_data + "|" + form.item)
+
+            // Encoding to be used
+            .digest('hex');
         form.mac = hash;
         request.post("https://sb-openapi.zalopay.vn/v2/create", {
             form: form,
             json: true
         }, function (e, r, result) {
             console.log(result)
-            if(result.return_code == 1) {
+            if (result.return_code == 1) {
                 res.redirect(result.order_url)
             } else {
 
             }
+        })
+    }
+    async redirectAfterPaymentComplete(req, res, next) {
+        let data = req.query;
+        let checksumData = data.appid + '|' + data.apptransid + '|' + data.pmcid + '|' + data.bankcode + '|' + data.amount + '|' + data.discountamount + '|' + data.status;
+        let checksum = crypto.createHmac('sha256', 'trMrHtvjo6myautxDUiAcYsVtaeQ8nhf')
+
+            // updating data
+            .update(checksumData)
+
+            // Encoding to be used
+            .digest('hex');
+
+        if (checksum != data.checksum) {
+            res.sendStatus(400);
+        } else {
+            let order = await Order.updateOne({
+                _id: data.apptransid.substring(7)
+            },
+                {
+                    purchased: true
+                })
+            if (!order) {
+                throw new Error();
+            }
+            if (order.acknowledged && order.modifiedCount == 1) {
+
+            } else {
+                throw new Error();
+            }
+            let user = await User.updateOne(
+                {
+                    _id: req.user._id
+                },
+                {
+                    cart: []
+                }
+            )
+            if (!user) {
+                throw new Error();
+            }
+            if (user.acknowledged && user.modifiedCount == 1) {
+                // kiểm tra xem đã nhận được callback hay chưa, nếu chưa thì tiến hành gọi API truy vấn trạng thái thanh toán của đơn hàng để lấy kết quả cuối cùng
+                res.redirect("/checkout/thankyou");
+            }
+        }
+    }
+    thankyou(req, res, next) {
+        res.render('purchased', {
+            user: req.user
         })
     }
 }
