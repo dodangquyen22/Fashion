@@ -61,9 +61,10 @@ class CheckoutController {
             item: JSON.stringify(cart),
             description: "INT2208 - Thanh toan hoa don",
             embed_data: JSON.stringify({
-                order_id: new_order._id.toString()
+                order_id: new_order._id.toString(),
+                redirecturl: "http://localhost:3000/checkout/callback"
             }),
-            bank_code: "zalopayapp",
+            bank_code: "",
             mac: null,
             callback_url: "http://localhost:3000/checkout/callback"
         }
