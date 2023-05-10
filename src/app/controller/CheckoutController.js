@@ -7,14 +7,14 @@ const crypto = require('crypto');
 class CheckoutController {
     view(req, res, next) {
         Product.find({
-            _id: {
-                $in: req.user.cart.map(x => x.product_id)
-            }
-        }).lean()
+                _id: {
+                    $in: req.user.cart.map(x => x.product_id)
+                }
+            }).lean()
             .then(products => {
                 products.map(x => {
                     req.user.cart.forEach(y => {
-                        if (x._id.toString() == y.product_id.toString()) {
+                        if (x._id && y.product_id && x._id.toString() == y.product_id.toString()) {
                             x.quantity = y.quantity;
                         }
                     });
@@ -69,19 +69,19 @@ class CheckoutController {
             callback_url: "http://localhost:3000/checkout/callback"
         }
         const hash = crypto.createHmac('sha256', 'sdngKKJmqEMzvh5QQcdD2A9XBSKUNaYn')
-                    
-                   // updating data
-                   .update(form.app_id +'|'+ form.app_trans_id +'|'+ form.app_user +'|'+ form.amount +"|"+ form.app_time +'|'+ form.embed_data +"|"+ form.item)
- 
-                   // Encoding to be used
-                   .digest('hex');
+
+        // updating data
+        .update(form.app_id + '|' + form.app_trans_id + '|' + form.app_user + '|' + form.amount + "|" + form.app_time + '|' + form.embed_data + "|" + form.item)
+
+        // Encoding to be used
+        .digest('hex');
         form.mac = hash;
         request.post("https://sb-openapi.zalopay.vn/v2/create", {
             form: form,
             json: true
-        }, function (e, r, result) {
+        }, function(e, r, result) {
             console.log(result)
-            if(result.return_code == 1) {
+            if (result.return_code == 1) {
                 res.redirect(result.order_url)
             } else {
 
