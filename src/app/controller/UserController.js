@@ -76,8 +76,7 @@ class sign_UpController {
     async change_Info(req, res, next) {
 
         const { name, oldPassword, newPassword } = req.body;
-        //const user = await User.findOne({ email: req.body.email });
-        res.json(req.params.id);
+        const user = await User.findById({ _id: req.user._id });
         const validPassword = await bcrypt.compare(oldPassword, user.password);
 
         if (validPassword) {
@@ -90,7 +89,7 @@ class sign_UpController {
             res.redirect('/');
             res.status(200).send('User updated successfully');
         } else {
-            return res.render('/user/info');
+            res.redirect('/user/info');
         }
     }
 }
