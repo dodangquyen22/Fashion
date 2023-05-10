@@ -1,6 +1,8 @@
 const Product = require("./modulers/Product");
 const Order = require("./modulers/Order");
-const request = require('request')
+const request = require('request');
+const moment = require('moment');
+const crypto = require('crypto');
 
 class CheckoutController {
     view(req, res, next) {
@@ -48,9 +50,42 @@ class CheckoutController {
             customer_id: req.user._id,
             products: cart,
             total: totalPrice
-        });
+        })
         await new_order.save();
-        res.redirect('/');
+        let form = {
+            app_id: 2554,
+            app_user: req.user._id.toString(),
+            app_trans_id: `${moment().format('YYMMDD')}_${new_order._id.toString()}`,
+            app_time: Date.now(),
+            amount: totalPrice,
+            item: JSON.stringify(cart),
+            description: "INT2208 - Thanh toan hoa don",
+            embed_data: JSON.stringify({
+                order_id: new_order._id.toString()
+            }),
+            bank_code: "zalopayapp",
+            mac: null,
+            callback_url: "http://localhost:3000/checkout/callback"
+        }
+        const hash = crypto.createHmac('sha256', 'sdngKKJmqEMzvh5QQcdD2A9XBSKUNaYn')
+                    
+                   // updating data
+                   .update(form.app_id +'|'+ form.app_trans_id +'|'+ form.app_user +'|'+ form.amount +"|"+ form.app_time +'|'+ form.embed_data +"|"+ form.item)
+ 
+                   // Encoding to be used
+                   .digest('hex');
+        form.mac = hash;
+        request.post("https://sb-openapi.zalopay.vn/v2/create", {
+            form: form,
+            json: true
+        }, function (e, r, result) {
+            console.log(result)
+            if(result.return_code == 1) {
+                res.redirect(result.order_url)
+            } else {
+
+            }
+        })
     }
 }
 
