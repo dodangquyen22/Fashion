@@ -25,6 +25,11 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    purchased: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     created_at: {
         type: Date,
         default: Date.now
