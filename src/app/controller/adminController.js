@@ -21,7 +21,7 @@ class adminController {
                 if (validPassword) {
                     res.cookie("uid", user.id);
                     res.statusCode = 302;
-                    res.setHeader('Location', '/admin/homepage');
+                    res.setHeader('Location', '/admin/products');
                     res.end();
                 } else {
                     return res.render('admin/signIn', { error: 'Mật khẩu không chính xác' });
