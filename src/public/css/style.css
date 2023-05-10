@@ -2080,6 +2080,7 @@ ol {
 .breadcrumb-option {
     background: #f3f2ee;
     padding: 40px 0;
+    margin-bottom: 20;
 }
 
 .breadcrumb__text h4 {
@@ -3892,13 +3893,15 @@ ol {
         height: 250px;
     }
 }
+
 .product__cart__item {
     overflow: hidden;
     margin-bottom: 40px;
-  }
+}
+
 .product__cart__item__pic {
     height: 90px;
     width: 90px;
     position: relative;
     background-position: center center;
-  }
+}

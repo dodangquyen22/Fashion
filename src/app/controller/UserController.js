@@ -61,11 +61,37 @@ class sign_UpController {
             next(error);
         }
     }
+
     async logout(req, res, next) {
         res.clearCookie("uid");
         res.statusCode = 302;
         res.setHeader('Location', '/');
         res.end();
+    }
+
+    info(req, res) {
+        res.render('about', { user: req.user });
+    }
+
+    async change_Info(req, res, next) {
+
+        const { name, oldPassword, newPassword } = req.body;
+        //const user = await User.findOne({ email: req.body.email });
+        res.json(req.params.id);
+        const validPassword = await bcrypt.compare(oldPassword, user.password);
+
+        if (validPassword) {
+            const salt = await bcrypt.genSalt(10);
+            let plaintext = newPassword.toString();
+            const hashed = await bcrypt.hash(plaintext, parseInt(salt));
+            user.password = hashed;
+            user.name = name;
+            await user.save();
+            res.redirect('/');
+            res.status(200).send('User updated successfully');
+        } else {
+            return res.render('/user/info');
+        }
     }
 }
 
