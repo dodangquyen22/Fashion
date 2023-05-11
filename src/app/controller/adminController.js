@@ -31,6 +31,16 @@ class adminController {
             next(error);
         }
     }
+    accountUser(req, res, next) {
+        User.find({}).lean()
+            .then(user => res.render('admin/account-user', { user }))
+            .catch(error => next(error));
+    }
+    viewOrder(req, res, next) {
+        User.find({}).lean()
+            .then(user => res.render('admin/viewOrder', { user }))
+            .catch(error => next(error));
+    }
 }
 
 module.exports = new adminController();
