@@ -72,7 +72,7 @@
             <div class="cart">
               <a href="/cart">
                 <img src="/img/icon/cart.png" alt="Cart" />
-                <span class="item-count">{{user.cart.length}}</span>
+                <span class="item-count">{{productCount user.cart}}</span>
               </a>
             </div>
             <div class="dropdown">
@@ -87,7 +87,8 @@
                 {{user.name}}
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="/user/info">Tài Khoản của tôi</a></li>
+                <li><a class="dropdown-item" href="./about.html">Tài Khoản của
+                    tôi</a></li>
                 <li><a class="dropdown-item" href="./shop-details.html">Đơn mua</a></li>
                 <li><a class="dropdown-item" href="/user/logout">Đăng xuất</a></li>
                 {{! <li><a class="dropdown-item" href="./checkout.html">Check Out</a></li>

@@ -1,43 +1,49 @@
 module.exports = {
-    ifeq: function(a, b, options){
-      if (a === b) {
-        return options.fn(this);
+    ifeq: function(a, b, options) {
+        if (a === b) {
+            return options.fn(this);
         }
-      return options.inverse(this);
+        return options.inverse(this);
     },
-    bar: function(){
-      return "BAR!";
+    bar: function() {
+        return "BAR!";
     },
     total_price: function(products) {
-        price = products.reduce((partialSum, a) => partialSum + parseInt(a.price), 0)
+        price = products.reduce((partialSum, a) => partialSum + parseInt(a.price) * a.quantity, 0)
         console.log(price);
         return price.toString();
     },
     increment: function(index) {
-      return index + 1;
+        return index + 1;
     },
     formatPrice: function(price) {
-      return price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+        return price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
     },
     sortable: function(field, sort) {
-      let sortType ='default';
-      if (field === sort.column) sortType = sort.type;
-      const icons = {
-        default: 'fa-solid fa-sort',
-        asc: 'fa-solid fa-sort-down',
-        desc: 'fa-solid fa-sort-up'
-      }
+        let sortType = 'default';
+        if (field === sort.column) sortType = sort.type;
+        const icons = {
+            default: 'fa-solid fa-sort',
+            asc: 'fa-solid fa-sort-down',
+            desc: 'fa-solid fa-sort-up'
+        }
 
-      const types = {
-        default: 'desc',
-        asc: 'desc',
-        desc: 'asc',
-      }
+        const types = {
+            default: 'desc',
+            asc: 'desc',
+            desc: 'asc',
+        }
 
-      
-      const icon = icons[sortType];
-      const type = types[sortType];
 
-      return `<a href="?_sort&column=${field}&type=${type}"><i class="${icon}"></i></a>`;
+    },
+    multiple: function(a, b) {
+        return a * b;
+    },
+    productCount: function(cart) {
+        let sum = 0;
+        cart.forEach(e => {
+            sum += e.quantity;
+        });
+        return sum;
     }
 }

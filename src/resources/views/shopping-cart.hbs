@@ -159,11 +159,11 @@
                     <td class="quantity__item">
                       <div class="quantity">
                         <div class="pro-qty-2">
-                          <input type="text" value="1" />
+                          <input type="text" value="{{this.quantity}}" />
                         </div>
                       </div>
                     </td>
-                    <td class="cart__price">{{this.price}} đ</td>
+                    <td class="cart__price">{{multiple this.price this.quantity}} đ</td>
                     <td class="cart__close"><a
                         href="/cart/remove/{{this._id}}"
                       ><i class="fa fa-close"></i></a></td>
@@ -206,7 +206,7 @@
             <li>Subtotal <span>{{total_price products}} đ</span></li>
             <li>Total <span>{{total_price products}} đ</span></li>
           </ul>
-          <a href="#" class="primary-btn">Proceed to checkout</a>
+          <a href="/checkout" class="primary-btn">Proceed to checkout</a>
         </div>
       </div>
     </div>
