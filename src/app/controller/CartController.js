@@ -67,7 +67,9 @@ class CartController {
             })
     }
     removeProduct(req, res, next) {
-        User.updateOne({ _id: req.user._id }, { $pull: { cart: req.params.id } })
+        User.updateOne({ _id: req.user._id }, { $pull: { cart: {
+            product_id: req.params.id
+        } } })
             .lean()
             .then(updateResult => {
                 console.log(updateResult)
