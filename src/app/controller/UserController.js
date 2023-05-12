@@ -1,4 +1,5 @@
 const User = require('./modulers/User');
+const Order = require('./modulers/Order');
 const Product = require('./modulers/Product');
 const bcrypt = require("bcrypt");
 
@@ -91,6 +92,23 @@ class sign_UpController {
         } else {
             res.redirect('/user/info');
         }
+    }
+    showPurchase(req, res, next) {
+        Order.find({
+            customer_id: req.user._id
+        })
+        .populate({
+            path: "products.product_id"
+        }).lean()
+        .then(orders => {
+            res.render('user/purchase', {
+                user: req.user,
+                orders: orders
+            });
+        })
+        .catch(error => {
+            next(error)
+        })
     }
 }
 

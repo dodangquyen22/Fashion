@@ -8,8 +8,9 @@ router.get('/login', signUpController.signIn);
 router.post('/createUser', signUpController.register);
 router.post('/login', signUpController.login);
 router.get('/logout', signUpController.logout);
-router.get('/info', signUpController.info);
-router.post('/change-info', signUpController.change_Info)
+router.get('/info', authMiddleware, signUpController.info);
+router.post('/change-info', authMiddleware, signUpController.change_Info)
+router.get('/purchase', authMiddleware, signUpController.showPurchase);
 router.get('/:id', authMiddleware, signUpController.loginSuccess);
 
 
