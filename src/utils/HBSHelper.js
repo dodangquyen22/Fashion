@@ -17,7 +17,10 @@ module.exports = {
         return index + 1;
     },
     formatPrice: function(price) {
-        return price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+        if (typeof price == "string") {
+            price = parseInt(price);
+        }
+        return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     },
     sortable: function(field, sort) {
         let sortType = 'default';
