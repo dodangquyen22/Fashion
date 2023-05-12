@@ -15,6 +15,7 @@
                         <th>Ngày đặt hàng</th>
                         <th>Sản phẩm</th>
                         <th>Thành tiền</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +34,13 @@
                             {{/each}}
                         </td>
                         <td class="">{{this.total}} đ</td>
+                        <th>
+                            {{#if this.purchased }}
+                                Đã thanh toán
+                            {{else}}
+                                Chưa thanh toán
+                            {{/if}}
+                        </th>
                     </tr>
                     {{/each}}
                     {{else}}
