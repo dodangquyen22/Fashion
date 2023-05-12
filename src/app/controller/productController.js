@@ -10,9 +10,19 @@ class ProductController {
 
     store(req, res, next) {
         //res.json(req.body);
-        const product = new Product(req.body);
-        product.save();
-        res.redirect('/admin/products');
+        let product = new Product(req.body);
+        let validPrice = true;
+        if (isNaN(req.body.price) || req.body.price <= 0) validPrice = false;
+        if (!validPrice) {
+            Object.assign(product, {
+                priceMessage: 'Giá không hợp lệ, vui lòng nhập lại!',
+            });
+           return res.render('products/create', product);
+        } else {
+            product.save();
+            res.redirect('/admin/products');
+        }
+        
     }
 
     //[GET] /product/:id
