@@ -30,6 +30,8 @@ class CheckoutController {
     async order(req, res, next) {
         let cart = req.user.cart;
         let totalPrice = 0
+        let phoneNumber = req.user.phoneNumber;
+        let address = req.user.address;
         let prod_find = await Product.find({
             _id: {
                 $in: req.user.cart.map(x => x.product_id)
@@ -46,13 +48,27 @@ class CheckoutController {
                 }
             })
         })
-        console.log(cart)
         let new_order = await new Order({
             customer_id: req.user._id,
             products: cart,
             total: totalPrice
         })
         await new_order.save();
+        if (!req.user.phoneNumber && req.body.phonenumber != "") {
+            phoneNumber = req.body.phonenumber
+        }
+        if (!req.user.address && req.body.address) {
+            address =req.body.address
+        }
+        await User.updateOne(
+            {
+                _id: req.user._id
+            },
+            {
+                phoneNumber: phoneNumber,
+                address: address
+            }
+        ).lean();
         let form = {
             app_id: 2554,
             app_user: req.user._id.toString(),
