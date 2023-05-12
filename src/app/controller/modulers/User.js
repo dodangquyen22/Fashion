@@ -25,6 +25,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    phoneNumber: {
+        type: String
+    },
+    address: {
+        type: String
+    },
     cart: {
         type: [cartSchema],
         default: []
