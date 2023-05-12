@@ -29,11 +29,11 @@
                             {{#each this.products }}
                             <p>
                             <h5>{{this.product_id.name}}</h5>
-                            <h6>{{this.product_id.price}} đ</h6>
+                            <h6>{{formatPrice this.product_id.price}}</h6>
                             </p>
                             {{/each}}
                         </td>
-                        <td class="">{{this.total}} đ</td>
+                        <td class="">{{formatPrice this.total}}</td>
                         <th>
                             {{#if this.purchased }}
                                 Đã thanh toán

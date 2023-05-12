@@ -66,10 +66,10 @@ h3 {
       {{#each order.products}}
       <p>Tên sản phẩm: {{ this.product_id.name }}</p>      
       <p>
-        Giá: {{ this.product_id.price }} đ/1 chiếc <br>
+        Giá: {{ formatPrice this.product_id.price }}/1 chiếc <br>
         Số lượng: {{ this.quantity }}
       </p>
       {{/each}}
-      <p>Tổng tiền: {{order.total}} đ</p>
+      <p>Tổng tiền: {{formatPrice order.total}}</p>
     </div>
   </body>

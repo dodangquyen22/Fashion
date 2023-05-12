@@ -106,12 +106,12 @@
                 <span>Total</span></div>
               <ul class="checkout__total__products">
                 {{#each products}}
-                <li>{{increment @index}}. {{this.name}} <b>(x{{this.quantity}})</b> <span>{{multiple this.price this.quantity}}d</span></li>
+                <li>{{increment @index}}. {{this.name}} <b>(x{{this.quantity}})</b> <span>{{formatPrice (multiple this.price this.quantity)}}</span></li>
                 {{/each}}
               </ul>
               <ul class="checkout__total__all">
-                <li>Subtotal <span>{{total_price products}}d</span></li>
-                <li>Total <span>{{total_price products}}d</span></li>
+                <li>Subtotal <span>{{formatPrice (total_price products)}}</span></li>
+                <li>Total <span>{{formatPrice (total_price products)}}</span></li>
               </ul>
               <p><h5>Payment method</h5></p>
               <div class="checkout__input__checkbox">
