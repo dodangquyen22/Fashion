@@ -1,4 +1,5 @@
 const User = require('./modulers/User');
+const Order = require('./modulers/Order');
 const bcrypt = require("bcrypt");
 
 class adminController {
@@ -32,14 +33,25 @@ class adminController {
         }
     }
     accountUser(req, res, next) {
-        User.find({}).lean()
-            .then(user => res.render('admin/account-user', { user }))
+        Order.find({}).populate("customer_id").lean()
+            .then(orders => {
+                console.log(orders)
+                res.render('admin/account-user', { orders })
+            })
             .catch(error => next(error));
     }
     viewOrder(req, res, next) {
-        User.find({}).lean()
-            .then(user => res.render('admin/viewOrder', { user }))
-            .catch(error => next(error));
+        Order.findOne({
+            _id: req.query.id
+        }).populate("customer_id").populate({
+            path: "products.product_id",
+            // select: "product_id"
+        }).lean()
+        .then(order => {
+            console.log(order.products)
+            res.render('admin/viewOrder', { order })
+        })
+        .catch(error => next(error));
     }
 }
 

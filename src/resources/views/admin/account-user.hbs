@@ -41,10 +41,6 @@
       {{>header-admin}}
     </header>
     <main>
-      {{!-- <div class="search">
-        <label for="search">Tìm kiếm:</label>
-        <input type="text" id="search" name="search">
-      </div> --}}
       <table>
         <thead>
           <tr>
@@ -55,30 +51,18 @@
           </tr>
         </thead>
         <tbody>
+          {{#each orders}}
           <tr>
-            <td>DH001</td>
-            <td>Nguyễn Văn A</td>
-            <td class="pending">Đang chờ</td>
-            <td><a href="/admin/viewOrder">Xem</a></td>
-          </tr>
-          <tr>
-            <td>DH002</td>
-            <td>Nguyễn Thị B</td>
+            <td>{{ this._id }}</td>
+            <td>{{ this.customer_id.name }}</td>
+            {{#if this.purchased }}
             <td class="paid">Đã thanh toán</td>
-            <td><a href="/admin/viewOrder">Xem</a></td>
+            {{else}}
+            <td class="pending">Đang chờ thanh toán</td>
+            {{/if}}
+            <td><a href="/admin/viewOrder?id={{this._id}}">Xem</a></td>
           </tr>
-          <tr>
-            <td>DH003</td>
-            <td>Trần Văn C</td>
-            <td class="shipped">Đã giao hàng</td>
-            <td><a href="/admin/viewOrder">Xem</a></td>
-          </tr>
-          <tr>
-            <td>DH004</td>
-            <td>Lê Thị D</td>
-            <td class="cancelled">Đã hủy</td>
-            <td><a href="/admin/viewOrder">Xem</a></td>
-          </tr>
+          {{/each}}
         </tbody>
       </table>
     </main>

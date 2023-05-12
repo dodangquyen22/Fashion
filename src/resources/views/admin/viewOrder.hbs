@@ -55,19 +55,21 @@ h3 {
     {{>header-admin}}
     <div class="customer-info">
       <h3>Thông tin khách hàng</h3>
-      <p>Tên: Nguyễn Văn A</p>
-      <p>Email: nguyenvana@example.com</p>
-      <p>Điện thoại: 0901234567</p>
-      <p>Địa chỉ: uet</p>
+      <p>Tên: {{order.customer_id.name}}</p>
+      <p>Email: {{order.customer_id.email}}</p>
     </div>
 
     <div class="order-info">
       <h3>Thông tin đơn hàng</h3>
-      <p>Mã đơn hàng: DH001</p>
-      <p>Ngày đặt hàng: 2023-05-11</p>
-      <p>Tên sản phẩm: Áo khoác</p>
-      <p>Giá: 500,000 đ</p>
-      <p>Số lượng: 1</p>
-      <p>Tổng tiền: 500,000 đ</p>
+      <p>Mã đơn hàng: {{order._id}}</p>
+      <p>Ngày đặt hàng: {{order.created_at}}</p>
+      {{#each order.products}}
+      <p>Tên sản phẩm: {{ this.product_id.name }}</p>      
+      <p>
+        Giá: {{ this.product_id.price }} đ/1 chiếc <br>
+        Số lượng: {{ this.quantity }}
+      </p>
+      {{/each}}
+      <p>Tổng tiền: {{order.total}} đ</p>
     </div>
   </body>
