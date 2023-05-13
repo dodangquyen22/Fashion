@@ -84,7 +84,7 @@
     });
 
 function myFunction() {
-  var input, filter, table, tr, tdName, tdPrice, i, txtValueName, txtValuePrice;
+  var input, filter, table, tr, tdName, tdPrice,tdCategory, i, txtValueName, txtValuePrice, txtValueCategory;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
   table = document.getElementById("myTable");
@@ -94,10 +94,12 @@ function myFunction() {
   for (i = 0; i < tr.length; i++) {
     tdName = tr[i].getElementsByTagName("td")[0];
     tdPrice = tr[i].getElementsByTagName("td")[2];
-    if (tdName || tdPrice) {
+    tdCategory = tr[i].getElementsByTagName("td")[3];
+    if (tdName || tdPrice || tdCategory) {
       txtValueName = tdName.textContent || tdName.innerText;
       txtValuePrice = tdPrice.textContent || tdPrice.innerText;
-      if (txtValueName.toUpperCase().indexOf(filter) > -1 || txtValuePrice.toUpperCase().indexOf(filter) > -1) {
+      txtValueCategory = tdCategory.textContent || tdCategory.innerText;
+      if (txtValueName.toUpperCase().indexOf(filter) > -1 || txtValuePrice.toUpperCase().indexOf(filter) > -1 || txtValueCategory.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
