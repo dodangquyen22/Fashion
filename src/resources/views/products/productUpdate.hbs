@@ -2,7 +2,8 @@
 
 <div class="mt-4 px-5">
     <h3>Danh sách tất cả sản phẩm</h3>
-    <table class="table mt-4">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Nhập từ khóa tìm kiếm">
+    <table id="myTable" class="table mt-4">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -84,5 +85,27 @@
         });
     });
 
+function myFunction() {
+  var input, filter, table, tr, tdName, tdPrice, i, txtValueName, txtValuePrice;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    tdName = tr[i].getElementsByTagName("td")[0];
+    tdPrice = tr[i].getElementsByTagName("td")[2];
+    if (tdName || tdPrice) {
+      txtValueName = tdName.textContent || tdName.innerText;
+      txtValuePrice = tdPrice.textContent || tdPrice.innerText;
+      if (txtValueName.toUpperCase().indexOf(filter) > -1 || txtValuePrice.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
     
 </script>
