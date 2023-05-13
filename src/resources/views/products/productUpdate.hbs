@@ -6,7 +6,6 @@
     <table id="myTable" class="table mt-4">
         <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">
                   Tên sản phẩm
                   {{{sortable 'name' _sort}}}
@@ -27,8 +26,8 @@
         </thead>
         <tbody>
             {{#each products}}
+            {{#if this.listed}}
             <tr>
-                <th scope="row">{{increment @index}}</th>
                 <td>{{this.name}}</td>
                 <td>
                   <img src="{{this.image}}" alt="" width="200px" height="300px">
@@ -40,6 +39,7 @@
                     <a href="" class="btn btn-danger" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-product-modal">Xóa</a>
                 </td>
             </tr>
+            {{/if}}
             {{/each}}
         </tbody>
     </table>
@@ -86,7 +86,7 @@
     });
 
 function myFunction() {
-  var input, filter, table, tr, tdName, tdPrice, i, txtValueName, txtValuePrice;
+  var input, filter, table, tr, tdName, tdPrice,tdCategory, i, txtValueName, txtValuePrice, txtValueCategory;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
   table = document.getElementById("myTable");
@@ -96,10 +96,12 @@ function myFunction() {
   for (i = 0; i < tr.length; i++) {
     tdName = tr[i].getElementsByTagName("td")[0];
     tdPrice = tr[i].getElementsByTagName("td")[2];
-    if (tdName || tdPrice) {
+    tdCategory = tr[i].getElementsByTagName("td")[3];
+    if (tdName || tdPrice || tdCategory) {
       txtValueName = tdName.textContent || tdName.innerText;
       txtValuePrice = tdPrice.textContent || tdPrice.innerText;
-      if (txtValueName.toUpperCase().indexOf(filter) > -1 || txtValuePrice.toUpperCase().indexOf(filter) > -1) {
+      txtValueCategory = tdCategory.textContent || tdCategory.innerText;
+      if (txtValueName.toUpperCase().indexOf(filter) > -1 || txtValuePrice.toUpperCase().indexOf(filter) > -1 || txtValueCategory.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";

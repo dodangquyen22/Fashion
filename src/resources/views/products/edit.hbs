@@ -4,21 +4,21 @@
     <form class="mt-4" method="POST" action="/admin/products/{{product._id}}?_method=PUT">
         <div class="form-group">
             <label for="name">Tên sản phẩm</label>
-            <input type="text" class="form-control" value="{{product.name}}" id="name" name="name">
+            <input type="text" class="form-control" value="{{product.name}}" id="name" name="name"  required="required" oninvalid="setCustomValidity('Xin hãy nhập tên')" oninput="setCustomValidity('')">
         </div>
         <div class="form-group">
             <label for="price">Giá sản phẩm</label>
-            <input type="text" class="form-control" value="{{product.price}}" id="price" name="price">
+            <input type="text" class="form-control" value="{{product.price}}" id="price" name="price" required pattern="\+?(\d+(\.(\d+)?)?|\.\d+)" oninvalid="setCustomValidity('Giá không hợp lệ, xin hãy nhập lại')" oninput="setCustomValidity('')">
             
         </div>
         <div class="form-group">
             <label for="image">Link hình ảnh sản phẩm</label>
-            <input type="text" class="form-control" value="{{product.image}}" id="image" name="image" >
+            <input type="text" class="form-control" value="{{product.image}}" id="image" name="image" required required="required" oninvalid="setCustomValidity('Xin hãy nhập đường dẫn sản phẩm')" oninput="setCustomValidity('')">
             
         </div>
         <div class="form-group">
             <label for="category">Phân loại sản phẩm</label>
-            <input type="text" class="form-control" value="{{product.category}}" id="category" name="category" >
+            <input type="text" class="form-control" value="{{product.category}}" id="category" name="category" required required="required" oninvalid="setCustomValidity('Xin hãy nhập phân loại sản phẩm')" oninput="setCustomValidity('')">
             
         </div>
         
