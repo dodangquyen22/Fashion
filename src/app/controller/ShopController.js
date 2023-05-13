@@ -30,17 +30,21 @@ class ShopController {
         try {
             const category = req.query.category;
             const sort = req.query.sort;
+            const { q } = req.query;
             const query = {};
             if (category) {
                 query.category = category;
             }
+            if (q) {
+                query.name = { $regex: q, $options: 'i' };
+            }
             let products = await Product.find(query).lean();
-            // if (sort === "asc") {
-            //     products = products.sort((a, b) => parseInt(a.price) - parseInt(b.price));
-            // }
-            // if (sort === "desc") {
-            //     products = products.sort((a, b) => parseInt(b.price) - parseInt(a.price));
-            // }
+            if (sort === "asc") {
+                products = products.sort((a, b) => parseInt(a.price) - parseInt(b.price));
+            }
+            if (sort === "desc") {
+                products = products.sort((a, b) => parseInt(b.price) - parseInt(a.price));
+            }
             res.render('shop/filter_sort', { user: req.user, query, products });
         } catch (error) {
             next(error);
@@ -48,30 +52,43 @@ class ShopController {
     }
     async search(req, res, next) {
         try {
-            const { q } = req.query;
-            const query = q ? { name: { $regex: q, $options: 'i' } } : {};
-            const products = await Product.find(query).lean();
-            res.render('shop/search', { user: req.user, query, products });
+            const { q, sort } = req.query;
+            let query = {};
+            let a;
+            if (q) {
+                a = { $regex: q, $options: 'i' };
+                query.name = a;
+            }
+            let products = await Product.find(query).lean();
+            if (sort === "asc") {
+                products = products.sort((a, b) => parseInt(a.price) - parseInt(b.price));
+            }
+            if (sort === "desc") {
+                products = products.sort((a, b) => parseInt(b.price) - parseInt(a.price));
+            }
+            res.render('shop/search', { user: req.user, query, products, a });
         } catch (error) {
             next(error);
         }
     }
 
-    // async sort(req, res, next) {
-    //     try {
-    //         const sort = req.query.sort;
-    //         const query = {};
-    //         let products = await Product.find(query).lean();
-    //         if (sort === "asc") {
-    //             products = products.sort((a, b) => parseInt(a.price) - parseInt(b.price));
-    //         }
-    //         if (sort === "desc") {
-    //             products = products.sort((a, b) => parseInt(b.price) - parseInt(a.price));
-    //         }
-    //         res.render('shop/sort', { products });
-    //     } catch (error) {
-    //         next(error);
-    //     }
-    // }
 }
+
+
+// async sort(req, res, next) {
+//     try {
+//         const sort = req.query.sort;
+//         const query = {};
+//         let products = await Product.find(query).lean();
+//         if (sort === "asc") {
+//             products = products.sort((a, b) => parseInt(a.price) - parseInt(b.price));
+//         }
+//         if (sort === "desc") {
+//             products = products.sort((a, b) => parseInt(b.price) - parseInt(a.price));
+//         }
+//         res.render('shop/sort', { products });
+//     } catch (error) {
+//         next(error);
+//     }
+// }
 module.exports = new ShopController();

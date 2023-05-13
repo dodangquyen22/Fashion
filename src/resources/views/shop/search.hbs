@@ -51,6 +51,7 @@
                   <div class="card-body">
                     <div class="shop__sidebar__categories">
                       <ul class="nice-scroll">
+                        <li><a href="/shop/filter-and-sort">Tất cả sản phẩm</a></li>
                         <li><a href="/shop/filter-and-sort?category=Áo khoác">Áo khoác</a></li>
                         <li><a href="/shop/filter-and-sort?category=Áo polo">Áo polo</a></li>
                         <li><a href="/shop/filter-and-sort?category=Áo thun">Áo thun</a></li>
@@ -228,18 +229,22 @@
                 <p>Showing 1–12 of 126 results</p>
               </div>
             </div> }}
-            {{!-- <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="shop__product__option__right">
-                                    <p>Sort by Price:</p>
-                                    <form action="/shop/product" method="GET">
-                                    <select name="sort" onchange="this.form.submit()">
-                                        <option value="">...</option>
-                                        <option value="asc" >Từ thấp tới cao</option>
-                                        <option value="desc">Từ cao tới thấp</option>
-                                    </select>
-                                    </form>
-                                </div>
-                         </div> --}}
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="shop__product__option__right">
+                          <form action="/shop/product" method="GET">
+                            {{!-- <input type="hidden" name="category" value="{{query.category}}"> --}}
+                            
+                            <h4>Sort by Price:</h4>
+                            <label for="sort">Sort:</label>
+                            <select name="sort" id="sort" onchange="this.form.submit()">
+                              <option value="">...</option>
+                              <option value="asc">Từ thấp tới cao</option>
+                              <option value="desc">Từ cao tới thấp</option>
+                            </select>
+                           <input type="hidden" name="q" value="{{query.q}}">
+                          </form>
+                        </div>
+              </div>
           </div>
           {{#if products}}
             <div class="row product__filter">
