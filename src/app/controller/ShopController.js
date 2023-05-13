@@ -35,12 +35,12 @@ class ShopController {
                 query.category = category;
             }
             let products = await Product.find(query).lean();
-            if (sort === "asc") {
-                products = products.sort((a, b) => parseInt(a.price) - parseInt(b.price));
-            }
-            if (sort === "desc") {
-                products = products.sort((a, b) => parseInt(b.price) - parseInt(a.price));
-            }
+            // if (sort === "asc") {
+            //     products = products.sort((a, b) => parseInt(a.price) - parseInt(b.price));
+            // }
+            // if (sort === "desc") {
+            //     products = products.sort((a, b) => parseInt(b.price) - parseInt(a.price));
+            // }
             res.render('shop/filter_sort', { user: req.user, query, products });
         } catch (error) {
             next(error);
