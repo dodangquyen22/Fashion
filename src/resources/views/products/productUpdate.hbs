@@ -6,7 +6,6 @@
     <table id="myTable" class="table mt-4">
         <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">
                   Tên sản phẩm
                   {{{sortable 'name' _sort}}}
@@ -28,7 +27,6 @@
         <tbody>
             {{#each products}}
             <tr>
-                <th scope="row">{{increment @index}}</th>
                 <td>{{this.name}}</td>
                 <td>
                   <img src="{{this.image}}" alt="" width="200px" height="300px">
