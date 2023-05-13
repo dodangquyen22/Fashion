@@ -86,9 +86,18 @@ class ProductController {
 
     // [DELETE] /produtc/:id
     destroy(req, res, next) {
-        Product.deleteOne({ _id: req.params.id })
-            .then(() => res.redirect('back'))
-            .catch(next);
+        Product.updateOne(
+            { _id: req.params.id },
+            { $set: {
+                listed: false
+            }}
+        ).lean()
+        .then(result => {
+            console.log(req.params.id)
+            console.log(result)
+            res.redirect('back')
+        })
+        .catch(next);
     }
 }
 
