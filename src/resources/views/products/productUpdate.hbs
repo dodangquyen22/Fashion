@@ -26,6 +26,7 @@
         </thead>
         <tbody>
             {{#each products}}
+            {{#if this.listed}}
             <tr>
                 <td>{{this.name}}</td>
                 <td>
@@ -38,6 +39,7 @@
                     <a href="" class="btn btn-danger" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-product-modal">Xóa</a>
                 </td>
             </tr>
+            {{/if}}
             {{/each}}
         </tbody>
     </table>

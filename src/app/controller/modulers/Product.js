@@ -6,6 +6,11 @@ const productSchema = new mongoose.Schema({
     price: { type: Number, required: true },
     image: { type: String, require: true },
     category: { type: String, require: true},
+    listed: {
+        type: Boolean,
+        required: true,
+        default: true
+    },
     stock: {type: Number, require: true }
     
 }, {

@@ -17,6 +17,9 @@ module.exports = {
         return index + 1;
     },
     formatPrice: function(price) {
+        if(!price) {
+            price = 0
+        }
         if (typeof price == "string") {
             price = parseInt(price);
         }
